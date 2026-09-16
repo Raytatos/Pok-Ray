@@ -2,26 +2,33 @@ name: Check Pokemon restock/listing alerts
 
 on:
   schedule:
-    # This is a SAFETY NET, not the main driver of check frequency.
-    # The job itself loops internally every ~2-3 minutes (see the "Run
-    # checks continuously" step below) for up to ~5h40m per run, since
-    # GitHub hard-caps any single job at 6 hours. This cron just makes
-    # sure a fresh run starts within 30 min if the long-running job ever
-    # dies early (crash, runner issue, etc). Thanks to the concurrency
-    # setting below, extra triggers while a run is already looping just
-    # queue harmlessly instead of starting a duplicate.
+    # This is a SAFETY NET, not the main driver of check frequency. Each
+    # shard job loops internally on its own runner (see the "Run checks
+    # continuously" step below) for up to ~5h40m per run, since GitHub
+    # hard-caps any single job at 6 hours. This cron just makes sure a
+    # fresh run starts within 30 min if a shard's long-running job ever
+    # dies early (crash, runner issue, etc). Thanks to the per-shard
+    # concurrency group below, extra triggers while a shard is already
+    # looping just queue harmlessly instead of starting a duplicate.
     - cron: "*/30 * * * *"
   workflow_dispatch: {}   # lets you click "Run workflow" in the Actions tab to test on demand
 
 permissions:
-  contents: write   # needed so the workflow can commit the updated state.json back
-
-concurrency:
-  group: check-stock
-  cancel-in-progress: false   # never cancel a run mid-check, just queue the next one
+  contents: write   # needed so each shard can commit its own state file back
 
 jobs:
   check:
+    strategy:
+      fail-fast: false   # one shard failing shouldn't cancel the other five
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6]
+    # Six shards run as six separate jobs on six separate runners at the
+    # same time - each one only checks its own slice of retailers
+    # (config/shard-N.json), so each shard's own cycle is much faster
+    # than one job checking all 40+ watches serially/semi-concurrently.
+    concurrency:
+      group: check-stock-shard-${{ matrix.shard }}
+      cancel-in-progress: false   # never cancel a run mid-check, just queue the next one for THIS shard
     runs-on: ubuntu-latest
     timeout-minutes: 355   # just under GitHub's 6-hour (360 min) hard cap per job; the loop step below stops itself well before this
     steps:
@@ -54,38 +61,45 @@ jobs:
         # Playwright's own cache check means this is fast even when the
         # actions/cache step above already restored the browser binary.
 
-      - name: Run checks continuously (~2-3 min cadence, for up to ~5h40m)
+      - name: Run checks continuously for this shard
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SHARD: ${{ matrix.shard }}
         run: |
           git config user.name "restock-alert-bot"
           git config user.email "actions@users.noreply.github.com"
 
+          CONFIG_FILE="config/shard-${SHARD}.json"
+          STATE_FILE="state/shard-${SHARD}.json"
+
           # Loop for ~5h40m, then let this run end so the schedule above
-          # can start a fresh one (GitHub kills any job at the 6h mark
-          # regardless, so this run stops itself well before that).
+          # can start a fresh one for this shard (GitHub kills any job at
+          # the 6h mark regardless, so this run stops itself well before
+          # that).
           END_TIME=$(( $(date +%s) + 340 * 60 ))
           CYCLE=0
 
           while [ "$(date +%s)" -lt "$END_TIME" ]; do
             CYCLE=$((CYCLE + 1))
-            echo "=== Cycle $CYCLE: $(date -u +%H:%M:%S) UTC ==="
+            echo "=== Shard $SHARD, cycle $CYCLE: $(date -u +%H:%M:%S) UTC ==="
 
-            python check_stock.py
+            python check_stock.py --config "$CONFIG_FILE" --state "$STATE_FILE"
 
-            if ! git diff --quiet -- state.json; then
-              git add state.json
-              git commit -m "Update alert state [skip ci]"
-              # In the rare case another push landed in between (shouldn't
-              # happen under the concurrency lock, but just in case).
+            if ! git diff --quiet -- "$STATE_FILE"; then
+              git add "$STATE_FILE"
+              git commit -m "Update alert state for shard $SHARD [skip ci]"
+              # Pull-rebase-retry in case another shard's job pushed a
+              # commit (to a different file) in between. Since each shard
+              # only ever touches its own state file, this always applies
+              # cleanly - it's just catching up on a moved HEAD.
               git push || (git pull --rebase --autostash && git push)
             fi
 
-            # Each cycle's own runtime (checking ~40 URLs) is normally
-            # ~2-2.5 minutes on its own; this sleep just adds a small gap
-            # on top so we don't hammer every site back-to-back with zero
-            # pause. Net effective cadence: roughly every 2-3 minutes.
+            # Each cycle only checks ~7 URLs for this shard (vs 40+ before
+            # sharding), so a cycle finishes in well under a minute; this
+            # sleep just adds a small gap so we're not hammering the same
+            # handful of sites back-to-back with zero pause.
             sleep 15
           done
 
-          echo "Loop window elapsed for this run - the next scheduled run will pick up where this left off."
+          echo "Loop window elapsed for shard $SHARD - the next scheduled run will pick up where this left off."
