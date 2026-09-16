@@ -74,6 +74,12 @@
     "seen_urls": [],
     "type": "listing_watch"
   },
+  "listing::https://www.amazon.com.au/s?k=pokemon+30th+celebration": {
+    "name": "Amazon Australia - search results",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
   "listing::https://www.ebgames.com.au/featured/pokemon-trading-card-game": {
     "name": "EB Games - Pokemon featured",
     "product_status": {},
