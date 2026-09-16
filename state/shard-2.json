@@ -1,1 +1,19 @@
-{}
+{
+  "listing::https://toymate.com.au/pokemon/": {
+    "name": "Toymate - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.target.com.au/c/toys/trading-card-games/pokemon-cards/W1852642": {
+    "name": "Target AU - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "stock::https://www.kidstuff.com.au/products/pokemon-tcg-30th-celebration-poster-box": {
+    "name": "Kidstuff - 30th Celebration Poster Box",
+    "status": "OUT_OF_STOCK",
+    "type": "stock_watch"
+  }
+}
