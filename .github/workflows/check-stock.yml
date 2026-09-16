@@ -2,10 +2,15 @@ name: Check Pokemon restock/listing alerts
 
 on:
   schedule:
-    # Every 5 minutes. GitHub does not guarantee exact timing for
-    # scheduled workflows (it can lag during high load), but this is the
-    # fastest free/reliable option without running your own server.
-    - cron: "*/5 * * * *"
+    # This is a SAFETY NET, not the main driver of check frequency.
+    # The job itself loops internally every ~2-3 minutes (see the "Run
+    # checks continuously" step below) for up to ~5h40m per run, since
+    # GitHub hard-caps any single job at 6 hours. This cron just makes
+    # sure a fresh run starts within 30 min if the long-running job ever
+    # dies early (crash, runner issue, etc). Thanks to the concurrency
+    # setting below, extra triggers while a run is already looping just
+    # queue harmlessly instead of starting a duplicate.
+    - cron: "*/30 * * * *"
   workflow_dispatch: {}   # lets you click "Run workflow" in the Actions tab to test on demand
 
 permissions:
@@ -18,7 +23,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10   # checks run concurrently (see CONCURRENCY_LIMIT in check_stock.py), but keep a safety margin
+    timeout-minutes: 355   # just under GitHub's 6-hour (360 min) hard cap per job; the loop step below stops itself well before this
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -49,19 +54,38 @@ jobs:
         # Playwright's own cache check means this is fast even when the
         # actions/cache step above already restored the browser binary.
 
-      - name: Run stock/listing check
+      - name: Run checks continuously (~2-3 min cadence, for up to ~5h40m)
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: python check_stock.py
-
-      - name: Commit updated state.json (if it changed)
         run: |
-          if ! git diff --quiet -- state.json; then
-            git config user.name "restock-alert-bot"
-            git config user.email "actions@users.noreply.github.com"
-            git add state.json
-            git commit -m "Update alert state [skip ci]"
-            git push
-          else
-            echo "state.json unchanged, nothing to commit."
-          fi
+          git config user.name "restock-alert-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          # Loop for ~5h40m, then let this run end so the schedule above
+          # can start a fresh one (GitHub kills any job at the 6h mark
+          # regardless, so this run stops itself well before that).
+          END_TIME=$(( $(date +%s) + 340 * 60 ))
+          CYCLE=0
+
+          while [ "$(date +%s)" -lt "$END_TIME" ]; do
+            CYCLE=$((CYCLE + 1))
+            echo "=== Cycle $CYCLE: $(date -u +%H:%M:%S) UTC ==="
+
+            python check_stock.py
+
+            if ! git diff --quiet -- state.json; then
+              git add state.json
+              git commit -m "Update alert state [skip ci]"
+              # In the rare case another push landed in between (shouldn't
+              # happen under the concurrency lock, but just in case).
+              git push || (git pull --rebase --autostash && git push)
+            fi
+
+            # Each cycle's own runtime (checking ~40 URLs) is normally
+            # ~2-2.5 minutes on its own; this sleep just adds a small gap
+            # on top so we don't hammer every site back-to-back with zero
+            # pause. Net effective cadence: roughly every 2-3 minutes.
+            sleep 15
+          done
+
+          echo "Loop window elapsed for this run - the next scheduled run will pick up where this left off."
