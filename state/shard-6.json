@@ -1,1 +1,74 @@
-{}
+{
+  "listing::https://pokesource.com.au/collections/30th-celebration": {
+    "name": "PokeSource AU - 30th Celebration collection",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://toysrus.com.au/collections/pokemon": {
+    "name": "Toys R Us Australia - Pokemon collection",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration": {
+    "name": "Trainer Town - 30th Celebration collection",
+    "product_status": {
+      "https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box-sealed-case": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection-sealed-case": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ditto-premium-collection": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box-sealed-case-assortment": "OUT_OF_STOCK"
+    },
+    "seen_urls": [
+      "https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box-sealed-case",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection-sealed-case",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ditto-premium-collection",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box-sealed-case-assortment"
+    ],
+    "type": "listing_watch"
+  },
+  "listing::https://unpluggedgames.com.au/collections/pokemon": {
+    "name": "Unplugged Games - Pokemon collection",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.gameology.com.au/collections/pokemon-30th-celebration": {
+    "name": "Gameology - 30th Celebration collection",
+    "product_status": {
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-binder-collection": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-elite-trainer-box": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-knock-out-collection": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-poster-collection": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-sylveon-ex-box-greninja-ex-box-random-select": "OUT_OF_STOCK"
+    },
+    "seen_urls": [
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-binder-collection",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-elite-trainer-box",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-knock-out-collection",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-poster-collection",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-sylveon-ex-box-greninja-ex-box-random-select"
+    ],
+    "type": "listing_watch"
+  },
+  "listing::https://www.gamesworld.com.au/product-category/trading-card-games/": {
+    "name": "Games World - Trading Card Games category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.milsims.com.au/collectable-and-trading-card-games/pokemon/": {
+    "name": "Milsims Games - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  }
+}
