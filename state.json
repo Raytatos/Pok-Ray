@@ -1,1 +1,168 @@
-{}
+{
+  "listing::https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration": {
+    "name": "Collectible Madness - 30th Celebration collection",
+    "product_status": {},
+    "seen_urls": [
+      "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration",
+      "https://collectiblemadness.com.au/pages/giveaway",
+      "https://collectiblemadness.com.au/products/pokemon-japanese-tcg-30th-celebration-m6a-booster-box",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-battle-deck-espeon-ex",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-battle-deck-umbreon-ex",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-binder-collection",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-booster-bundle",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-ditto-premium-collection",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-figure-collection-mew",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-figure-collection-mewtwo",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-greninja-ex-box",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-mini-tin",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-poster-collection",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-sylveon-ex-box",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-tech-sticker-collection",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-tin",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-ultra-premium-collection-day",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-ultra-premium-collection-night"
+    ],
+    "type": "listing_watch"
+  },
+  "listing::https://pokesource.com.au/collections/30th-celebration": {
+    "name": "PokeSource AU - 30th Celebration collection",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://toymate.com.au/pokemon/": {
+    "name": "Toymate - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://toysrus.com.au/collections/pokemon": {
+    "name": "Toys R Us Australia - Pokemon collection",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration": {
+    "name": "Trainer Town - 30th Celebration collection",
+    "product_status": {
+      "https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box-sealed-case": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection-sealed-case": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ditto-premium-collection": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box": "OUT_OF_STOCK",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box-sealed-case-assortment": "OUT_OF_STOCK"
+    },
+    "seen_urls": [
+      "https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-anniversary-elite-trainer-box-sealed-case",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-binder-collection-sealed-case",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ditto-premium-collection",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box",
+      "https://trainertown.com.au/products/pokemon-tcg-30th-celebration-ex-box-sealed-case-assortment"
+    ],
+    "type": "listing_watch"
+  },
+  "listing::https://unpluggedgames.com.au/collections/pokemon": {
+    "name": "Unplugged Games - Pokemon collection",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.ebgames.com.au/featured/pokemon-trading-card-game": {
+    "name": "EB Games - Pokemon featured",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.gameology.com.au/collections/pokemon-30th-celebration": {
+    "name": "Gameology - 30th Celebration collection",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.gamesworld.com.au/product-category/trading-card-games/": {
+    "name": "Games World - Trading Card Games category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.goodgames.com.au/pages/pokemon-30th-celebration": {
+    "name": "Good Games - 30th Celebration page",
+    "product_status": {
+      "https://www.goodgames.com.au/pages/pokemon-30th-celebration": "OUT_OF_STOCK"
+    },
+    "seen_urls": [
+      "https://www.goodgames.com.au/pages/pokemon-30th-celebration"
+    ],
+    "type": "listing_watch"
+  },
+  "listing::https://www.jbhifi.com.au/collections/collectibles-merchandise/pokemon-trading-cards": {
+    "name": "JB Hi-Fi - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.kmart.com.au/category/toys/pokemon-trading-cards/": {
+    "name": "Kmart - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.milsims.com.au/collectable-and-trading-card-games/pokemon/": {
+    "name": "Milsims Games - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.mrtoys.com.au/brand/228-pokemon": {
+    "name": "Mr Toys - Pokemon brand page",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.pokemoncenter.com/en-au/category/30th-celebration": {
+    "name": "Pokemon Center Australia - 30th Celebration category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.target.com.au/c/toys/trading-card-games/pokemon-cards/W1852642": {
+    "name": "Target AU - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.toyworld.com.au/pages/pokemon": {
+    "name": "Toyworld - Pokemon page",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.zingpopculture.com.au/featured/pokemon": {
+    "name": "Zing Pop Culture - Pokemon featured",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box": {
+    "name": "Grailborne - 30th Celebration Elite Trainer Box",
+    "status": "OUT_OF_STOCK",
+    "type": "stock_watch"
+  },
+  "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-ex-box-assorted": {
+    "name": "Grailborne - 30th Celebration ex Box",
+    "status": "OUT_OF_STOCK",
+    "type": "stock_watch"
+  },
+  "stock::https://www.kidstuff.com.au/products/pokemon-tcg-30th-celebration-poster-box": {
+    "name": "Kidstuff - 30th Celebration Poster Box",
+    "status": "OUT_OF_STOCK",
+    "type": "stock_watch"
+  }
+}
