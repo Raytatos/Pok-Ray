@@ -2,7 +2,13 @@
   "listing::https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration": {
     "name": "Collectible Madness - 30th Celebration collection",
     "product_status": {
-      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection": "IN_STOCK"
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-binder-collection": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-greninja-ex-box": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-poster-collection": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-sylveon-ex-box": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-tech-sticker-collection": "IN_STOCK"
     },
     "seen_urls": [
       "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration",
