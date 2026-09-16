@@ -1,1 +1,20 @@
-{}
+{
+  "listing::https://www.kmart.com.au/category/toys/pokemon-trading-cards/": {
+    "name": "Kmart - Pokemon category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.pokemoncenter.com/en-au/category/30th-celebration": {
+    "name": "Pokemon Center Australia - 30th Celebration category",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  },
+  "listing::https://www.toyworld.com.au/pages/pokemon": {
+    "name": "Toyworld - Pokemon page",
+    "product_status": {},
+    "seen_urls": [],
+    "type": "listing_watch"
+  }
+}
