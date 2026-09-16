@@ -1,0 +1,67 @@
+name: Check Pokemon restock/listing alerts
+
+on:
+  schedule:
+    # Every 5 minutes. GitHub does not guarantee exact timing for
+    # scheduled workflows (it can lag during high load), but this is the
+    # fastest free/reliable option without running your own server.
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}   # lets you click "Run workflow" in the Actions tab to test on demand
+
+permissions:
+  contents: write   # needed so the workflow can commit the updated state.json back
+
+concurrency:
+  group: check-stock
+  cancel-in-progress: false   # never cancel a run mid-check, just queue the next one
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10   # checks run concurrently (see CONCURRENCY_LIMIT in check_stock.py), but keep a safety margin
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Cache Playwright browser binaries
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+
+      - name: Install Playwright Chromium (+ OS deps)
+        run: python -m playwright install --with-deps chromium
+        # Playwright's own cache check means this is fast even when the
+        # actions/cache step above already restored the browser binary.
+
+      - name: Run stock/listing check
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python check_stock.py
+
+      - name: Commit updated state.json (if it changed)
+        run: |
+          if ! git diff --quiet -- state.json; then
+            git config user.name "restock-alert-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add state.json
+            git commit -m "Update alert state [skip ci]"
+            git push
+          else
+            echo "state.json unchanged, nothing to commit."
+          fi
