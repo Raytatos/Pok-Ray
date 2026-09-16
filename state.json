@@ -88,8 +88,20 @@
   },
   "listing::https://www.gameology.com.au/collections/pokemon-30th-celebration": {
     "name": "Gameology - 30th Celebration collection",
-    "product_status": {},
-    "seen_urls": [],
+    "product_status": {
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-binder-collection": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-elite-trainer-box": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-knock-out-collection": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-poster-collection": "OUT_OF_STOCK",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-sylveon-ex-box-greninja-ex-box-random-select": "OUT_OF_STOCK"
+    },
+    "seen_urls": [
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-binder-collection",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-elite-trainer-box",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-knock-out-collection",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-poster-collection",
+      "https://www.gameology.com.au/collections/pokemon-30th-celebration/products/pokemon-tcg-30th-celebration-sylveon-ex-box-greninja-ex-box-random-select"
+    ],
     "type": "listing_watch"
   },
   "listing::https://www.gamesworld.com.au/product-category/trading-card-games/": {
