@@ -1,0 +1,168 @@
+{
+  "_comment": "Two kinds of entries. 'listing_watches' watches a category/search page and alerts the first time a NEW product link matching one of `keywords` shows up there (good for catching SKUs we don't have a direct URL for yet). 'stock_watches' watches one specific product page and alerts when it flips from unavailable to in-stock. `retailer` picks which phrase rules from check_stock.py's RETAILER_RULES apply. Add/remove/edit entries freely - no code changes needed.",
+
+  "_release_note": "Pokemon TCG: 30th Celebration released worldwide on 16 Sep 2026. Product pages below were confirmed to exist that day, but several were flickering between live and 404 under launch-day load - that's normal and exactly what this tool is for, not a sign something is broken.",
+
+  "listing_watches": [
+    {
+      "name": "Big W - Pokemon category",
+      "retailer": "bigw",
+      "url": "https://www.bigw.com.au/toys/trading-cards/pokemon-trading-cards/c/681510201",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Kmart - Pokemon category",
+      "retailer": "kmart",
+      "url": "https://www.kmart.com.au/category/toys/pokemon-trading-cards/",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Target AU - Pokemon category",
+      "retailer": "target",
+      "url": "https://www.target.com.au/c/toys/trading-card-games/pokemon-cards/W1852642",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "JB Hi-Fi - Pokemon category",
+      "retailer": "jbhifi",
+      "url": "https://www.jbhifi.com.au/collections/collectibles-merchandise/pokemon-trading-cards",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "EB Games - Pokemon featured",
+      "retailer": "ebgames",
+      "url": "https://www.ebgames.com.au/featured/pokemon-trading-card-game",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Toymate - Pokemon category",
+      "retailer": "toymate",
+      "url": "https://toymate.com.au/pokemon/",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Mr Toys - Pokemon brand page",
+      "retailer": "mrtoys",
+      "url": "https://www.mrtoys.com.au/brand/228-pokemon",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Toyworld - Pokemon page",
+      "retailer": "toyworld",
+      "url": "https://www.toyworld.com.au/pages/pokemon",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Pokemon Center Australia - 30th Celebration category",
+      "retailer": "pokemoncenter",
+      "url": "https://www.pokemoncenter.com/en-au/category/30th-celebration",
+      "keywords": ["30th", "celebration"]
+    },
+    {
+      "name": "Amazon Australia - search results",
+      "retailer": "amazon",
+      "url": "https://www.amazon.com.au/s?k=pokemon+30th+celebration",
+      "keywords": ["30th celebration", "30th anniversary"]
+    },
+    {
+      "name": "Zing Pop Culture - Pokemon featured",
+      "retailer": "zing",
+      "url": "https://www.zingpopculture.com.au/featured/pokemon",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Collectible Madness - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Good Games - 30th Celebration page",
+      "retailer": "shopify_generic",
+      "url": "https://www.goodgames.com.au/pages/pokemon-30th-celebration",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "PokeSource AU - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://pokesource.com.au/collections/30th-celebration",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Unplugged Games - Pokemon collection",
+      "retailer": "shopify_generic",
+      "url": "https://unpluggedgames.com.au/collections/pokemon",
+      "keywords": ["30th celebration", "30th anniversary"]
+    },
+    {
+      "name": "Toys R Us Australia - Pokemon collection",
+      "retailer": "shopify_generic",
+      "url": "https://toysrus.com.au/collections/pokemon",
+      "keywords": ["30th celebration", "30th anniversary"]
+    },
+    {
+      "name": "Milsims Games - Pokemon category",
+      "retailer": "milsims",
+      "url": "https://www.milsims.com.au/collectable-and-trading-card-games/pokemon/",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Games World - Trading Card Games category",
+      "retailer": "gamesworld",
+      "url": "https://www.gamesworld.com.au/product-category/trading-card-games/",
+      "keywords": ["30th celebration", "30th anniversary"]
+    },
+    {
+      "name": "Gameology - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://www.gameology.com.au/collections/pokemon-30th-celebration",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Trainer Town - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration",
+      "keywords": ["30th celebration"]
+    }
+  ],
+
+  "stock_watches": [
+    { "enabled": true, "name": "Big W (Marketplace seller) - 30th Anniversary ETB Pre-Sale", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pok-mon-tcg-30th-anniversary-celebrations-etb-pre-sale-elite-trainer-box/p/9905452963" },
+    { "enabled": true, "name": "Big W - 30th Celebration Elite Trainer Box", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pokemon-tcg-30th-celebration-elite-trainer-box/p/6087705" },
+    { "enabled": true, "name": "Big W - 30th Celebration Booster Bundle", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pok-mon-tcg-30th-celebration-booster-bundle/p/6087715" },
+    { "enabled": true, "name": "Big W - 30th Celebration Sylveon/Greninja ex Box", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pokemon-tcg-30th-celebration-sylveon-ex-box-greninja-ex-box-assorted-/p/6087706" },
+
+    { "enabled": true, "name": "Kmart - 30th Celebration Elite Trainer Box", "retailer": "kmart", "url": "https://www.kmart.com.au/product/pokemon-tcg:-30th-celebration-elite-trainer-box-43818587/" },
+    { "enabled": true, "name": "Kmart - 30th Celebration Tech Sticker Collection", "retailer": "kmart", "url": "https://www.kmart.com.au/product/pokemon-trading-card-game:-30th-celebration-tech-sticker-collection-assorted-43818570/" },
+    { "enabled": true, "name": "Kmart - 30th Celebration Poster Collection", "retailer": "kmart", "url": "https://www.kmart.com.au/product/pokemon-trading-card-game:-30th-celebration-poster-collection-43818563/" },
+
+    { "enabled": true, "name": "EB Games - 30th Celebration Ultra-Premium Collection (Umbreon)", "retailer": "ebgames", "url": "https://www.ebgames.com.au/product/other/378910-pokemon-tcg-30th-celebration-ultra-premium-collection-umbreon" },
+    { "enabled": true, "name": "EB Games - 30th Celebration Booster Bundle", "retailer": "ebgames", "url": "https://www.ebgames.com.au/product/other/378907-pokemon-tcg-30th-celebration-booster-bundle" },
+    { "enabled": true, "name": "EB Games - 30th Celebration ex Box", "retailer": "ebgames", "url": "https://www.ebgames.com.au/product/other/378903-pokemon-tcg-30th-celebration-pokemon-ex-box" },
+
+    { "enabled": true, "name": "JB Hi-Fi - 30th Celebration Knock Out Collection", "retailer": "jbhifi", "url": "https://www.jbhifi.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection-card-game" },
+
+    { "enabled": true, "name": "Kidstuff - 30th Celebration Poster Box", "retailer": "shopify_generic", "url": "https://www.kidstuff.com.au/products/pokemon-tcg-30th-celebration-poster-box" },
+
+    { "enabled": true, "name": "Toymate - 30th Celebration Booster Bundle", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-booster-bundle/" },
+    { "enabled": true, "name": "Toymate - 30th Celebration Battle Deck", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-battle-deck/" },
+    { "enabled": true, "name": "Toymate - 30th Celebration ex Box", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-ex-box/" },
+    { "enabled": true, "name": "Toymate - 30th Celebration Ultra-Premium Day/Night Collection", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-ultra-premium-day-night-collection/" },
+
+    { "enabled": true, "name": "Grailborne - 30th Celebration Elite Trainer Box", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box" },
+    { "enabled": true, "name": "Grailborne - 30th Celebration Knock Out Collection", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection" },
+    { "enabled": true, "name": "Grailborne - 30th Celebration ex Box", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-ex-box-assorted" },
+    { "enabled": true, "name": "Grailborne - 30th Celebration Poster Box", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-poster-box" },
+
+    { "enabled": true, "name": "Drop Store - 30th Celebration Ultra-Premium Collection (Pikachu ex Day)", "retailer": "shopify_generic", "url": "https://dropstore.com.au/products/30th-celebration-pikachu-ex-day-ultra-premium-collection-pokemon-tcg" },
+    { "enabled": true, "name": "Drop Store - 30th Celebration Ditto Premium Collection", "retailer": "shopify_generic", "url": "https://dropstore.com.au/products/30th-celebration-ditto-premium-collection-pokemon-tcg" },
+
+    {
+      "_comment": "Template for adding more once you spot a URL - copy, fill in, set enabled true. retailer must be a key in RETAILER_RULES (check_stock.py): bigw, kmart, target, jbhifi, ebgames, zing, toymate, mrtoys, toyworld, pokemoncenter, amazon, or shopify_generic (Grailborne/Drop Store/Collectible Madness/Gameology/Trainer Town/most small AU card stores).",
+      "enabled": false,
+      "name": "Example",
+      "retailer": "shopify_generic",
+      "url": "https://example.com/products/replace-me"
+    }
+  ]
+}
