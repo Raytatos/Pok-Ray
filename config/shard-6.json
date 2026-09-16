@@ -1,0 +1,50 @@
+{
+  "_comment": "Shard 6 of 6 - the smaller AU specialty/hobby stores (listing-watch only, no confirmed direct product URLs yet). See config/README.md for how sharding works and how to add new watches.",
+
+  "listing_watches": [
+    {
+      "name": "PokeSource AU - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://pokesource.com.au/collections/30th-celebration",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Unplugged Games - Pokemon collection",
+      "retailer": "shopify_generic",
+      "url": "https://unpluggedgames.com.au/collections/pokemon",
+      "keywords": ["30th celebration", "30th anniversary"]
+    },
+    {
+      "name": "Toys R Us Australia - Pokemon collection",
+      "retailer": "shopify_generic",
+      "url": "https://toysrus.com.au/collections/pokemon",
+      "keywords": ["30th celebration", "30th anniversary"]
+    },
+    {
+      "name": "Milsims Games - Pokemon category",
+      "retailer": "milsims",
+      "url": "https://www.milsims.com.au/collectable-and-trading-card-games/pokemon/",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Games World - Trading Card Games category",
+      "retailer": "gamesworld",
+      "url": "https://www.gamesworld.com.au/product-category/trading-card-games/",
+      "keywords": ["30th celebration", "30th anniversary"]
+    },
+    {
+      "name": "Gameology - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://www.gameology.com.au/collections/pokemon-30th-celebration",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Trainer Town - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://trainertown.com.au/collections/pokemon-trading-cards-30th-celebration",
+      "keywords": ["30th celebration"]
+    }
+  ],
+
+  "stock_watches": []
+}

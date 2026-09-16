@@ -1,0 +1,36 @@
+{
+  "_comment": "Shard 5 of 6 - EB Games + Zing + Collectible Madness + Good Games. See config/README.md for how sharding works and how to add new watches.",
+
+  "listing_watches": [
+    {
+      "name": "EB Games - Pokemon featured",
+      "retailer": "ebgames",
+      "url": "https://www.ebgames.com.au/featured/pokemon-trading-card-game",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Zing Pop Culture - Pokemon featured",
+      "retailer": "zing",
+      "url": "https://www.zingpopculture.com.au/featured/pokemon",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Collectible Madness - 30th Celebration collection",
+      "retailer": "shopify_generic",
+      "url": "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration",
+      "keywords": ["30th celebration"]
+    },
+    {
+      "name": "Good Games - 30th Celebration page",
+      "retailer": "shopify_generic",
+      "url": "https://www.goodgames.com.au/pages/pokemon-30th-celebration",
+      "keywords": ["30th celebration"]
+    }
+  ],
+
+  "stock_watches": [
+    { "enabled": true, "name": "EB Games - 30th Celebration Ultra-Premium Collection (Umbreon)", "retailer": "ebgames", "url": "https://www.ebgames.com.au/product/other/378910-pokemon-tcg-30th-celebration-ultra-premium-collection-umbreon" },
+    { "enabled": true, "name": "EB Games - 30th Celebration Booster Bundle", "retailer": "ebgames", "url": "https://www.ebgames.com.au/product/other/378907-pokemon-tcg-30th-celebration-booster-bundle" },
+    { "enabled": true, "name": "EB Games - 30th Celebration ex Box", "retailer": "ebgames", "url": "https://www.ebgames.com.au/product/other/378903-pokemon-tcg-30th-celebration-pokemon-ex-box" }
+  ]
+}

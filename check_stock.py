@@ -15,20 +15,29 @@ Two modes, both configured in config.json:
                       alerts every time it flips from "not orderable" to
                       "in stock".
 
-State (what we've already seen / alerted on) is kept in state.json so we
-only ever alert on a *change*, never on every run.
+State (what we've already seen / alerted on) is kept in a state JSON
+file (state.json by default, or whatever --state points at) so we only
+ever alert on a *change*, never on every run.
 
 Notifications go to a Discord channel via a webhook URL, read from the
 DISCORD_WEBHOOK_URL environment variable (set as a GitHub Actions secret;
 see README.md).
 
 Checks run concurrently (bounded by CONCURRENCY_LIMIT) rather than one
-page load at a time, so a run of 40+ watches finishes in roughly
+page load at a time, so a run finishes in roughly
 (total page loads / CONCURRENCY_LIMIT) time instead of the full serial
-sum - this is what keeps a 5-minute cron schedule realistic as more
-retailers/products get added.
+sum.
+
+Config/state files are configurable via --config/--state (see
+`python check_stock.py --help`), which is what lets multiple copies of
+this same script run in parallel as separate GitHub Actions matrix
+jobs, each one only responsible for a slice of retailers (see
+config/shard-*.json and the "sharded" workflow in
+.github/workflows/check-stock.yml) - each shard gets its own state
+file too, so parallel jobs never write-conflict with each other.
 """
 
+import argparse
 import asyncio
 import json
 import os
@@ -44,8 +53,6 @@ from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright
 
 ROOT = Path(__file__).resolve().parent
-CONFIG_PATH = ROOT / "config.json"
-STATE_PATH = ROOT / "state.json"
 
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
 
@@ -191,31 +198,43 @@ def save_json(path: Path, data) -> None:
     path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
 
 
-def send_discord_alert(message: str) -> None:
+def send_discord_alert(message: str) -> bool:
     """Blocking - call via `await asyncio.to_thread(send_discord_alert, ...)`
-    from async code so it doesn't stall the event loop mid-run."""
+    from async code so it doesn't stall the event loop mid-run. Returns
+    True only if Discord actually accepted the message - callers must
+    check this rather than assuming a POST attempt means delivery."""
     if not DISCORD_WEBHOOK_URL:
         log("No DISCORD_WEBHOOK_URL set - printing alert instead of sending it:")
         log(message)
-        return
+        return False
     payload = json.dumps({"content": message}).encode("utf-8")
     req = urllib.request.Request(
         DISCORD_WEBHOOK_URL,
         data=payload,
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            # Discord sits behind Cloudflare, which can 403 (error 1010)
+            # requests carrying urllib's default "Python-urllib/x.y"
+            # user-agent as a bot fingerprint. A normal browser-looking
+            # UA avoids that block.
+            "User-Agent": USER_AGENT,
+        },
         method="POST",
     )
     try:
         with urllib.request.urlopen(req, timeout=15) as resp:
             resp.read()
+            return True
     except urllib.error.HTTPError as e:
         log(f"Discord webhook failed: HTTP {e.code} {e.read()[:300]}")
+        return False
     except Exception as e:  # noqa: BLE001 - never let a notify failure kill the run
         log(f"Discord webhook failed: {e}")
+        return False
 
 
-async def alert(message: str) -> None:
-    await asyncio.to_thread(send_discord_alert, message)
+async def alert(message: str) -> bool:
+    return await asyncio.to_thread(send_discord_alert, message)
 
 
 async def render_page(context, semaphore: asyncio.Semaphore, url: str) -> str:
@@ -324,15 +343,23 @@ async def run_listing_watch(context, semaphore, entry: dict, state: dict) -> Non
             restock_lines.append(f"• {link_text}\n  {u}")
 
     if new_listing_lines:
-        await alert(
+        delivered = await alert(
             "\n".join([f"🆕 **New listing spotted at {retailer.upper()}** — {name}"] + new_listing_lines)
         )
-        log(f"ALERT sent: {len(new_listing_lines)} new matching link(s).", tag)
+        if delivered:
+            log(f"ALERT sent: {len(new_listing_lines)} new matching link(s).", tag)
+        else:
+            log(f"ALERT DELIVERY FAILED (see Discord webhook error above): "
+                f"{len(new_listing_lines)} new matching link(s) not delivered to Discord.", tag)
     if restock_lines:
-        await alert(
+        delivered = await alert(
             "\n".join([f"🚨 **Back in stock at {retailer.upper()}** — {name}"] + restock_lines)
         )
-        log(f"ALERT sent: {len(restock_lines)} link(s) back in stock.", tag)
+        if delivered:
+            log(f"ALERT sent: {len(restock_lines)} link(s) back in stock.", tag)
+        else:
+            log(f"ALERT DELIVERY FAILED (see Discord webhook error above): "
+                f"{len(restock_lines)} link(s) back in stock not delivered to Discord.", tag)
     if not new_listing_lines and not restock_lines:
         log(f"No change ({len(matches)} matching link(s), none newly listed or newly in stock).", tag)
 
@@ -373,21 +400,46 @@ async def run_stock_watch(context, semaphore, entry: dict, state: dict) -> None:
     log(f"Status: {status} (previous: {previous})", tag)
 
     if status == IN_STOCK and previous != IN_STOCK:
-        await alert(f"🚨 **IN STOCK** — {name} ({retailer.upper()})\n{url}")
-        log("ALERT sent: now in stock.", tag)
+        delivered = await alert(f"🚨 **IN STOCK** — {name} ({retailer.upper()})\n{url}")
+        if delivered:
+            log("ALERT sent: now in stock.", tag)
+        else:
+            log("ALERT DELIVERY FAILED (see Discord webhook error above): now in stock but not delivered to Discord.", tag)
 
     state[key] = {"type": "stock_watch", "name": name, "status": status}
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--config",
+        default="config.json",
+        help="Path to the config JSON file to read watches from (default: config.json). "
+             "Relative paths are resolved from the script's own directory.",
+    )
+    parser.add_argument(
+        "--state",
+        default="state.json",
+        help="Path to the state JSON file to read/write (default: state.json). "
+             "Give each parallel/sharded invocation its own state file so they "
+             "never overwrite each other.",
+    )
+    return parser.parse_args()
+
+
 async def main() -> int:
-    config = load_json(CONFIG_PATH, {})
-    state = load_json(STATE_PATH, {})
+    args = parse_args()
+    config_path = ROOT / args.config
+    state_path = ROOT / args.state
+
+    config = load_json(config_path, {})
+    state = load_json(state_path, {})
 
     listing_watches = config.get("listing_watches", [])
     stock_watches = [w for w in config.get("stock_watches", []) if w.get("enabled")]
 
     if not listing_watches and not stock_watches:
-        log("No enabled watches in config.json - nothing to do.")
+        log(f"No enabled watches in {config_path.name} - nothing to do.")
         return 0
 
     start = time.monotonic()
@@ -413,9 +465,10 @@ async def main() -> int:
 
     elapsed = time.monotonic() - start
     log(f"Run finished in {elapsed:.1f}s across {len(listing_watches)} listing watch(es) "
-        f"and {len(stock_watches)} stock watch(es) (concurrency={CONCURRENCY_LIMIT}).")
+        f"and {len(stock_watches)} stock watch(es) (concurrency={CONCURRENCY_LIMIT}, "
+        f"config={config_path.name}, state={state_path.name}).")
 
-    save_json(STATE_PATH, state)
+    save_json(state_path, state)
     return 0
 
 

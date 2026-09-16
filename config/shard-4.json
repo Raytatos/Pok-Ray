@@ -1,0 +1,36 @@
+{
+  "_comment": "Shard 4 of 6 - Kmart + Toyworld + Pokemon Center + Amazon. See config/README.md for how sharding works and how to add new watches.",
+
+  "listing_watches": [
+    {
+      "name": "Kmart - Pokemon category",
+      "retailer": "kmart",
+      "url": "https://www.kmart.com.au/category/toys/pokemon-trading-cards/",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Toyworld - Pokemon page",
+      "retailer": "toyworld",
+      "url": "https://www.toyworld.com.au/pages/pokemon",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Pokemon Center Australia - 30th Celebration category",
+      "retailer": "pokemoncenter",
+      "url": "https://www.pokemoncenter.com/en-au/category/30th-celebration",
+      "keywords": ["30th", "celebration"]
+    },
+    {
+      "name": "Amazon Australia - search results",
+      "retailer": "amazon",
+      "url": "https://www.amazon.com.au/s?k=pokemon+30th+celebration",
+      "keywords": ["30th celebration", "30th anniversary"]
+    }
+  ],
+
+  "stock_watches": [
+    { "enabled": true, "name": "Kmart - 30th Celebration Elite Trainer Box", "retailer": "kmart", "url": "https://www.kmart.com.au/product/pokemon-tcg:-30th-celebration-elite-trainer-box-43818587/" },
+    { "enabled": true, "name": "Kmart - 30th Celebration Tech Sticker Collection", "retailer": "kmart", "url": "https://www.kmart.com.au/product/pokemon-trading-card-game:-30th-celebration-tech-sticker-collection-assorted-43818570/" },
+    { "enabled": true, "name": "Kmart - 30th Celebration Poster Collection", "retailer": "kmart", "url": "https://www.kmart.com.au/product/pokemon-trading-card-game:-30th-celebration-poster-collection-43818563/" }
+  ]
+}

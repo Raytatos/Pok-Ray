@@ -1,0 +1,26 @@
+{
+  "_comment": "Shard 2 of 6 - Toymate + Kidstuff + Target. See config/README.md for how sharding works and how to add new watches.",
+
+  "listing_watches": [
+    {
+      "name": "Target AU - Pokemon category",
+      "retailer": "target",
+      "url": "https://www.target.com.au/c/toys/trading-card-games/pokemon-cards/W1852642",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "Toymate - Pokemon category",
+      "retailer": "toymate",
+      "url": "https://toymate.com.au/pokemon/",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    }
+  ],
+
+  "stock_watches": [
+    { "enabled": true, "name": "Kidstuff - 30th Celebration Poster Box", "retailer": "shopify_generic", "url": "https://www.kidstuff.com.au/products/pokemon-tcg-30th-celebration-poster-box" },
+    { "enabled": true, "name": "Toymate - 30th Celebration Booster Bundle", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-booster-bundle/" },
+    { "enabled": true, "name": "Toymate - 30th Celebration Battle Deck", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-battle-deck/" },
+    { "enabled": true, "name": "Toymate - 30th Celebration ex Box", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-ex-box/" },
+    { "enabled": true, "name": "Toymate - 30th Celebration Ultra-Premium Day/Night Collection", "retailer": "toymate", "url": "https://toymate.com.au/pokemon-tcg-30th-celebration-ultra-premium-day-night-collection/" }
+  ]
+}

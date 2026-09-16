@@ -1,0 +1,21 @@
+{
+  "_comment": "Shard 3 of 6 - Grailborne + Drop Store + Mr Toys. See config/README.md for how sharding works and how to add new watches.",
+
+  "listing_watches": [
+    {
+      "name": "Mr Toys - Pokemon brand page",
+      "retailer": "mrtoys",
+      "url": "https://www.mrtoys.com.au/brand/228-pokemon",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    }
+  ],
+
+  "stock_watches": [
+    { "enabled": true, "name": "Grailborne - 30th Celebration Elite Trainer Box", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box" },
+    { "enabled": true, "name": "Grailborne - 30th Celebration Knock Out Collection", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection" },
+    { "enabled": true, "name": "Grailborne - 30th Celebration ex Box", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-ex-box-assorted" },
+    { "enabled": true, "name": "Grailborne - 30th Celebration Poster Box", "retailer": "shopify_generic", "url": "https://grailborne.com.au/products/pokemon-tcg-30th-celebration-poster-box" },
+    { "enabled": true, "name": "Drop Store - 30th Celebration Ultra-Premium Collection (Pikachu ex Day)", "retailer": "shopify_generic", "url": "https://dropstore.com.au/products/30th-celebration-pikachu-ex-day-ultra-premium-collection-pokemon-tcg" },
+    { "enabled": true, "name": "Drop Store - 30th Celebration Ditto Premium Collection", "retailer": "shopify_generic", "url": "https://dropstore.com.au/products/30th-celebration-ditto-premium-collection-pokemon-tcg" }
+  ]
+}

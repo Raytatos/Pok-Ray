@@ -1,7 +1,9 @@
 # Pokémon 30th Celebration restock/listing alert
 
 Watches Australian retailers and pings a Discord channel the moment
-something relevant happens. Two kinds of watch, both in `config.json`:
+something relevant happens. Two kinds of watch, both configured in the
+`config/shard-*.json` files (see "How checking is split across shards"
+below for why there are 6 of these instead of one `config.json`):
 
 - **`listing_watches`** — watches a category/search page for product
   links matching a keyword (e.g. "30th Celebration"), alerts once when a
@@ -32,7 +34,7 @@ isn't a sign the config is broken.
 
 ## Retailers covered (21 total)
 
-**Mainstream / big-box** (`config.json` already has confirmed real
+**Mainstream / big-box** (the config already has confirmed real
 30th Celebration product URLs for these as `stock_watches`, since pages
 already existed when this was built):
 
@@ -95,7 +97,9 @@ your own alerts.
 ## 2. Unzip the project and check the files
 
 Unzip `pokemon-restock-alert.zip`. You should see `check_stock.py`,
-`config.json`, `requirements.txt`, `README.md`, `state.json`, and a
+`requirements.txt`, `README.md`, a **`config`** folder (containing
+`shard-1.json` through `shard-6.json`), a **`state`** folder (containing
+matching empty `shard-1.json` through `shard-6.json` files), and a
 **`.github`** folder containing `workflows/check-stock.yml`.
 
 That `.github` folder is easy to miss because folders starting with a
@@ -130,9 +134,9 @@ that actually makes the automation run.
 1. On the new, empty repo page, click **uploading an existing file**
    (the link in the "Get started" text).
 2. Open the unzipped `pokemon-restock-alert` folder in your file
-   manager so you can see its *contents* (`check_stock.py`,
-   `config.json`, the `.github` folder, etc.) — not the parent folder
-   itself.
+   manager so you can see its *contents* (`check_stock.py`, the
+   `config` folder, the `.github` folder, etc.) — not the parent
+   folder itself.
 3. Select everything inside it (`Ctrl+A` / `Cmd+A`) and drag the whole
    selection onto GitHub's upload area at once.
 4. Watch the list of files GitHub builds as it processes the drop, and
@@ -165,33 +169,92 @@ that actually makes the automation run.
    restock/listing alerts**.
 4. On the right, click the **Run workflow** dropdown, then the green
    **Run workflow** button inside it (leave the branch as `main`).
-5. Wait a few seconds and refresh the page. A new run appears with a
-   yellow dot (in progress); it turns into a green checkmark (success)
-   or a red X (failed) once it finishes — usually well under a minute.
-6. Click into that run → the **check** job → expand **Run stock/listing
-   check** to see the live log. You should see lines like `[Kmart -
-   30th Celebration Elite Trainer Box] Status: OUT_OF_STOCK` and a
-   final `Run finished in X.Xs` line.
-7. Check Discord: you likely won't get a message on this very first run
-   unless something happens to be newly in stock right now — silence
-   here is expected and means it's working, not that it's broken.
-8. If the run shows a red X, open the failed step to read the error.
-   The most common cause is the secret name being slightly wrong; if
-   the workflow doesn't even appear in step 6.3 at all, that means the
-   `.github` folder didn't upload in step 4 — go back and re-check that.
+5. Wait a few seconds and refresh the page. This time **6 runs appear
+   at once** — `check (1)` through `check (6)` — one per shard, all
+   running in parallel. Each shows its own yellow dot (in progress)
+   that turns into a green checkmark (success) or red X (failed).
+6. Click into any one of the 6 → expand **Run checks continuously for
+   this shard** to see its live log. You should see lines like
+   `[Kmart - 30th Celebration Elite Trainer Box] Status: OUT_OF_STOCK`,
+   a `Run finished in X.Xs` line, then `=== Shard N, cycle 2 ===` and
+   it starts again. Each shard step deliberately keeps running for
+   hours (see "How the continuous cycling works" below) — the run
+   staying "in progress" with a yellow dot for a long time is
+   expected, not stuck.
+7. Check Discord: you likely won't get a message on the first cycle or
+   two unless something happens to be newly in stock right now —
+   silence here is expected and means it's working, not that it's
+   broken.
+8. If any of the 6 shows a red X, open its failed step to read the
+   error. The most common cause is the secret name being slightly
+   wrong (this would affect all 6 the same way, since they share the
+   one secret); if the workflow doesn't even appear in step 6.3 at
+   all, that means the `.github` folder didn't upload in step 4 — go
+   back and re-check that.
 
-That's it — from here it runs automatically every 5 minutes, forever,
-for free, without your computer needing to be on. Come back to the
-Actions tab in 15–20 minutes and you should see more runs appear on
-their own, marked as triggered by "schedule" rather than by you — that
-confirms the automatic schedule is working, not just your manual test.
+That's it — from here it checks continuously, forever, for free,
+without your computer needing to be on. See the next section for how
+that actually works under the hood.
+
+## How checking is split across shards
+
+Rather than one job checking all 40+ watches, the workflow uses a
+GitHub Actions **matrix** to run 6 separate jobs in parallel, each on
+its own runner, each responsible for a slice of retailers defined in
+`config/shard-1.json` through `config/shard-6.json` (see
+`config/README.md` for exactly which stores are in which shard, and
+how to add a new watch). This is mainly a speed win: a shard checking
+~7 watches finishes a lap in seconds instead of the ~2-2.5 minutes a
+single job checking all 40+ took before.
+
+Each shard also writes to its own state file
+(`state/shard-1.json` etc.), so the 6 parallel jobs never race or
+conflict trying to commit to the same file.
+
+## How the continuous cycling works
+
+Instead of waiting on GitHub's 5-minute minimum schedule interval, each
+shard's job loops internally: it checks its ~7 watches, waits about 15
+seconds, then checks again — over and over, non-stop, independently of
+the other 5 shards. Since each shard only has a handful of watches, a
+lap normally finishes in well under a minute, so the real-world cadence
+per shard lands around **every 15-45 seconds** rather than a precise
+metronome.
+
+GitHub caps any single job at 6 hours no matter what, so each shard's
+loop stops itself after ~5h40m and lets that run end cleanly. The
+`*/30 * * * *` schedule in the workflow is just a safety net per shard —
+it starts a fresh run for a shard within 30 minutes if that shard's
+long-running job ever ends early (crash, runner hiccup, the 5h40m
+cutoff, etc). While a shard is already looping, extra schedule triggers
+for it just queue harmlessly rather than starting a duplicate, thanks
+to that shard's own `concurrency` group in the workflow file.
+
+One tradeoff worth knowing: checking this often hits each retailer's
+site noticeably more often than every 5 minutes did. That's still well
+within normal human-browsing territory, not scraping-bot volume, but it
+does raise the odds versus before of a heavily bot-protected site
+(Amazon, Target) temporarily blocking or CAPTCHA-gating the runner's
+traffic — see "Sites blocking the runner's IP" below. If that starts
+happening a lot, slowing back down is a one-line change (see below).
+
+**To slow the cadence down**: edit the `sleep 15` line in the "Run
+checks continuously for this shard" step — a bigger number means more
+time between cycles for every shard (e.g. `sleep 60` for a noticeably
+slower pace).
+
+**To go back to one unsharded job on a plain 5-minute schedule**: ask
+and I can revert the workflow/config/script changes for you — it's a
+bigger edit than a one-liner since it touches the matrix, the config
+split, and the `--config`/`--state` arguments in `check_stock.py`.
 
 ## 7. Adding more products or retailers
 
-Copy the template entry at the bottom of `stock_watches` in
-`config.json`, fill in the real product URL, and set `retailer` to
-whichever key in `RETAILER_RULES` (top of `check_stock.py`) matches that
-site's platform:
+See `config/README.md` for the full explanation of the 6 shard files.
+Short version: open whichever `config/shard-N.json` has the fewest
+entries right now, copy an existing entry's shape, fill in the real
+product URL, and set `retailer` to whichever key in `RETAILER_RULES`
+(top of `check_stock.py`) matches that site's platform:
 
 ```json
 {
@@ -204,28 +267,30 @@ site's platform:
 
 `shopify_generic` covers most small AU card/hobby stores (anything with
 `/products/` and `/collections/` in its URLs). Commit and push — no
-other code changes needed.
+workflow changes needed for a new watch in an existing shard.
 
 ## Notes and limitations
 
 - **Run time and concurrency**: since listing_watches also check the
-  stock of every matching product they find, a run does a lot of page
-  loads in total (40+ watches, some pulling in extra product pages).
-  To keep the 5-minute schedule realistic, checks run concurrently
-  rather than one at a time - `CONCURRENCY_LIMIT` in `check_stock.py`
-  (default 6) caps how many page loads are in flight at once. The log
-  prints a "Run finished in Xs" line at the end of every run - keep an
-  eye on that in the Actions tab. If runs are creeping past a few
-  minutes as you add more watches, you can raise `CONCURRENCY_LIMIT`
-  (faster, but more simultaneous load on the target sites and the
-  runner), trim `MAX_PRODUCT_CHECKS_PER_LISTING`, or split the watches
-  across two workflow files on staggered schedules.
-- **Speed**: GitHub's schedule is every 5 minutes and isn't perfectly
-  exact (it can lag a few minutes during peak load). That's the
-  practical ceiling for a free, no-server setup. If you want
-  faster/near-instant checks, the next step up is moving the same logic
-  to a Cloudflare Workers Cron Trigger (free tier allows 1-minute
-  schedules) — ask if you want that built out.
+  stock of every matching product they find, a shard's cycle can do
+  more than its raw watch count in page loads (a listing watch can
+  pull in several extra product pages). Checks within a shard still run
+  concurrently rather than one at a time - `CONCURRENCY_LIMIT` in
+  `check_stock.py` (default 6) caps how many page loads are in flight
+  at once per shard. The log prints a "Run finished in Xs" line at the
+  end of every cycle - keep an eye on that in the Actions tab; it's the
+  main lever on cadence, along with the sharding and sleep settings
+  described above. If a particular shard's cycles are creeping up (e.g.
+  after adding several watches to it), move some of its entries to a
+  lighter shard, or raise `CONCURRENCY_LIMIT`.
+- **Speed**: the workflow splits checking across 6 parallel shard jobs,
+  each looping continuously rather than relying on GitHub's 5-minute
+  schedule minimum — see "How checking is split across shards" and "How
+  the continuous cycling works" above for the real cadence and how to
+  tune it. If you want faster/near-instant checks beyond that, the next
+  step up is moving the same logic to a Cloudflare Workers Cron Trigger
+  (free tier allows 1-minute schedules) — ask if you want that built
+  out.
 - **Target Australia and Amazon Australia** were both flaky/heavily
   bot-protected when this was built — Target threw JavaScript errors on
   some real product pages, and Amazon is known for CAPTCHA-gating
@@ -241,8 +306,8 @@ other code changes needed.
   the first alert from each and sanity check it against the real page;
   adjust the phrase lists if needed.
 - **The Big W "Marketplace" listing**: the ETB Pre-Sale URL from Big W
-  in `config.json` is sold by a third-party marketplace seller, not
-  Big W itself, and was priced with an inflated "SAVE $300" badge —
+  in `config/shard-1.json` is sold by a third-party marketplace seller,
+  not Big W itself, and was priced with an inflated "SAVE $300" badge —
   common for reseller listings during a hyped drop. It's included
   because it's a real, currently-live listing, but treat its price with
   more skepticism than a "Sold & shipped by Big W" listing.
@@ -250,23 +315,44 @@ other code changes needed.
   well-known shared IP ranges, and heavily bot-protected sites (Amazon,
   Target, anything behind Cloudflare/Akamai) sometimes start silently
   blocking or CAPTCHA-gating that traffic over time, unrelated to
-  anything being wrong with the config. If a retailer that used to work
-  starts reporting UNKNOWN on every run, this is the likely cause.
+  anything being wrong with the config — and checking every 15-45
+  seconds per shard (see above) somewhat raises those odds compared to
+  a slower schedule. If a retailer that used to work starts reporting
+  UNKNOWN on every run, this is the likely cause. Each store's watches
+  all live in one shard (see `config/README.md`), so this would only
+  ever affect that one shard, not the other five.
+- **Discord webhook getting blocked (HTTP 403, "error code: 1010")**:
+  early real-world runs hit this - Discord sits behind Cloudflare,
+  which was rejecting the webhook POST because it went out with
+  Python's default `urllib` user-agent, a common bot fingerprint. Fixed
+  by sending a normal browser-looking User-Agent on that request. A
+  related logging bug was fixed at the same time: the script used to
+  log "ALERT sent" right after *attempting* a Discord post, even if
+  Discord had just rejected it - so a failed delivery looked identical
+  to a successful one in the log. It now only logs "ALERT sent" when
+  Discord actually accepts the message, and logs "ALERT DELIVERY
+  FAILED" (check the Discord webhook error line just above it) when it
+  doesn't - so if you ever see that line, treat it as a real signal
+  that a notification didn't reach your channel, not just noise.
 - **Discord rate limits**: Discord caps a webhook at roughly 30
-  messages/minute. If a lot of products flip status in the same run
-  (e.g. right at a midnight launch), later alerts in that burst could
-  get silently rate-limited rather than delivered - the script doesn't
+  messages/minute. With 6 shards now able to alert independently and
+  simultaneously, a burst where several different retailers restock at
+  once (e.g. right at a midnight launch) is a bit more likely to brush
+  up against that limit than with one shard - the script doesn't
   currently retry on a 429.
 - **Long-term dormancy**: GitHub auto-disables a scheduled workflow
-  after 60 days with no repository activity, and this workflow only
-  commits when `state.json` actually changes. Not a near-term concern
-  given how fast this set is already moving, but if you keep this
-  running for months after things quiet down, check the Actions tab
-  occasionally to make sure it's still firing.
+  after 60 days with no repository activity, and each shard only
+  commits when its own state file actually changes. Not a near-term
+  concern given how fast this set is already moving (and six
+  independently-committing shards make it even less likely all
+  activity stops at once), but if you keep this running for months
+  after things quiet down, check the Actions tab occasionally to make
+  sure it's still firing.
 - **This is a notify-only tool, by design**: it never adds to cart or
   checks out automatically, and that's intentional, not a missing
   feature - an auto-purchasing version would cross into scalping-bot
   territory that competes unfairly with other shoppers.
-- State (what's already been seen/alerted) lives in `state.json`, which
-  the workflow commits back to the repo after every run — that's how it
-  avoids re-alerting you for the same thing every 5 minutes.
+- State (what's already been seen/alerted) lives in `state/shard-1.json`
+  through `state/shard-6.json`, one per shard, which each shard's job
+  commits back to the repo whenever it changes — that's how it avoids
+  re-alerting you for the same thing on every cycle.

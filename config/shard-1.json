@@ -1,0 +1,26 @@
+{
+  "_comment": "Shard 1 of 6 - Big W + JB Hi-Fi. See config/README.md for how sharding works and how to add new watches.",
+
+  "listing_watches": [
+    {
+      "name": "Big W - Pokemon category",
+      "retailer": "bigw",
+      "url": "https://www.bigw.com.au/toys/trading-cards/pokemon-trading-cards/c/681510201",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    },
+    {
+      "name": "JB Hi-Fi - Pokemon category",
+      "retailer": "jbhifi",
+      "url": "https://www.jbhifi.com.au/collections/collectibles-merchandise/pokemon-trading-cards",
+      "keywords": ["30th anniversary", "30th Celebration"]
+    }
+  ],
+
+  "stock_watches": [
+    { "enabled": true, "name": "Big W (Marketplace seller) - 30th Anniversary ETB Pre-Sale", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pok-mon-tcg-30th-anniversary-celebrations-etb-pre-sale-elite-trainer-box/p/9905452963" },
+    { "enabled": true, "name": "Big W - 30th Celebration Elite Trainer Box", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pokemon-tcg-30th-celebration-elite-trainer-box/p/6087705" },
+    { "enabled": true, "name": "Big W - 30th Celebration Booster Bundle", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pok-mon-tcg-30th-celebration-booster-bundle/p/6087715" },
+    { "enabled": true, "name": "Big W - 30th Celebration Sylveon/Greninja ex Box", "retailer": "bigw", "url": "https://www.bigw.com.au/product/pokemon-tcg-30th-celebration-sylveon-ex-box-greninja-ex-box-assorted-/p/6087706" },
+    { "enabled": true, "name": "JB Hi-Fi - 30th Celebration Knock Out Collection", "retailer": "jbhifi", "url": "https://www.jbhifi.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection-card-game" }
+  ]
+}
