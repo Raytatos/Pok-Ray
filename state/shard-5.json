@@ -1,7 +1,9 @@
 {
   "listing::https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration": {
     "name": "Collectible Madness - 30th Celebration collection",
-    "product_status": {},
+    "product_status": {
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection": "IN_STOCK"
+    },
     "seen_urls": [
       "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration",
       "https://collectiblemadness.com.au/pages/giveaway",
