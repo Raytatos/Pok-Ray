@@ -7,12 +7,22 @@
   },
   "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box": {
     "name": "Grailborne - 30th Celebration Elite Trainer Box",
-    "status": "OUT_OF_STOCK",
+    "status": "IN_STOCK",
     "type": "stock_watch"
   },
   "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-ex-box-assorted": {
     "name": "Grailborne - 30th Celebration ex Box",
-    "status": "OUT_OF_STOCK",
+    "status": "IN_STOCK",
+    "type": "stock_watch"
+  },
+  "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection": {
+    "name": "Grailborne - 30th Celebration Knock Out Collection",
+    "status": "IN_STOCK",
+    "type": "stock_watch"
+  },
+  "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-poster-box": {
+    "name": "Grailborne - 30th Celebration Poster Box",
+    "status": "IN_STOCK",
     "type": "stock_watch"
   }
 }
