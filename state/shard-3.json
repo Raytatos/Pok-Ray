@@ -22,7 +22,7 @@
   },
   "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-poster-box": {
     "name": "Grailborne - 30th Celebration Poster Box",
-    "status": "OUT_OF_STOCK",
+    "status": "IN_STOCK",
     "type": "stock_watch"
   }
 }
