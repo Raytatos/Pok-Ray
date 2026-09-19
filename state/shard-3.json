@@ -5,6 +5,11 @@
     "seen_urls": [],
     "type": "listing_watch"
   },
+  "stock::https://dropstore.com.au/products/30th-celebration-pikachu-ex-day-ultra-premium-collection-pokemon-tcg": {
+    "name": "Drop Store - 30th Celebration Ultra-Premium Collection (Pikachu ex Day)",
+    "status": "OUT_OF_STOCK",
+    "type": "stock_watch"
+  },
   "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box": {
     "name": "Grailborne - 30th Celebration Elite Trainer Box",
     "status": "IN_STOCK",
