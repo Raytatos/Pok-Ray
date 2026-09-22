@@ -17,7 +17,7 @@
   },
   "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-ex-box-assorted": {
     "name": "Grailborne - 30th Celebration ex Box",
-    "status": "IN_STOCK",
+    "status": "OUT_OF_STOCK",
     "type": "stock_watch"
   },
   "stock::https://grailborne.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection": {
