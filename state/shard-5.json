@@ -2,13 +2,25 @@
   "listing::https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration": {
     "name": "Collectible Madness - 30th Celebration collection",
     "product_status": {
+      "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-japanese-tcg-30th-celebration-m6a-booster-box": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-battle-deck-espeon-ex": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-battle-deck-umbreon-ex": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-binder-collection": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-booster-bundle": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-ditto-premium-collection": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-figure-collection-mew": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-figure-collection-mewtwo": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-greninja-ex-box": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-mini-tin": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-poster-collection": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-sylveon-ex-box": "IN_STOCK",
-      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-tech-sticker-collection": "IN_STOCK"
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-tech-sticker-collection": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-tin": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-ultra-premium-collection-day": "IN_STOCK",
+      "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-ultra-premium-collection-night": "IN_STOCK"
     },
     "seen_urls": [
       "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration",
