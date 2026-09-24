@@ -74,17 +74,27 @@
     "name": "Milsims Games - Pokemon category",
     "product_status": {
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-binder-collection": "OUT_OF_STOCK",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-booster-bundle": "OUT_OF_STOCK",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-ditto-premium-collect": "OUT_OF_STOCK",
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-figure-collection-mew": "OUT_OF_STOCK",
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-knock-out-collection": "OUT_OF_STOCK",
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-mini-tin-1": "OUT_OF_STOCK",
-      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-sylveon-ex-box-grenin": "OUT_OF_STOCK"
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-poster-collection": "OUT_OF_STOCK",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-sylveon-ex-box-grenin": "OUT_OF_STOCK",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-tin": "OUT_OF_STOCK",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-ultra-premium-collect": "OUT_OF_STOCK"
     },
     "seen_urls": [
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-binder-collection",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-booster-bundle",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-ditto-premium-collect",
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-figure-collection-mew",
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-knock-out-collection",
       "https://www.milsims.com.au/pokemon-tcg-30th-celebration-mini-tin-1",
-      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-sylveon-ex-box-grenin"
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-poster-collection",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-sylveon-ex-box-grenin",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-tin",
+      "https://www.milsims.com.au/pokemon-tcg-30th-celebration-ultra-premium-collect"
     ],
     "type": "listing_watch"
   }
