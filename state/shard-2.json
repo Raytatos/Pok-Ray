@@ -13,7 +13,7 @@
   },
   "stock::https://www.kidstuff.com.au/products/pokemon-tcg-30th-celebration-poster-box": {
     "name": "Kidstuff - 30th Celebration Poster Box",
-    "status": "OUT_OF_STOCK",
+    "status": "IN_STOCK",
     "type": "stock_watch"
   }
 }
