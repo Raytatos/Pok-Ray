@@ -65,7 +65,9 @@
   "listing::https://www.zingpopculture.com.au/featured/pokemon": {
     "name": "Zing Pop Culture - Pokemon featured",
     "product_status": {},
-    "seen_urls": [],
+    "seen_urls": [
+      "https://www.zingpopculture.com.au/product/toys-and-collectibles/355320-pokemon-x-santa-cruz-30th-anniversary-blind-bag-skateboard-deck-single-bag"
+    ],
     "type": "listing_watch"
   }
 }
