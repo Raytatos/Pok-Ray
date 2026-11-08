@@ -55,10 +55,32 @@
   "listing::https://www.goodgames.com.au/pages/pokemon-30th-celebration": {
     "name": "Good Games - 30th Celebration page",
     "product_status": {
-      "https://www.goodgames.com.au/pages/pokemon-30th-celebration": "OUT_OF_STOCK"
+      "https://www.goodgames.com.au/pages/pokemon-30th-celebration": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-battle-deck-espeon-ex": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-battle-deck-umbreon-ex": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-binder-collection": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-booster-bundle": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-greninja-ex-box": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-mini-tin-assorted": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-poster-collection": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-sylveon-ex-box": "OUT_OF_STOCK",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-tech-sticker-collection-alolan-exeggutor": "OUT_OF_STOCK"
     },
     "seen_urls": [
-      "https://www.goodgames.com.au/pages/pokemon-30th-celebration"
+      "https://www.goodgames.com.au/pages/pokemon-30th-celebration",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-battle-deck-espeon-ex",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-battle-deck-umbreon-ex",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-binder-collection",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-booster-bundle",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-elite-trainer-box",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-greninja-ex-box",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-mini-tin-assorted",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-poster-collection",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-sylveon-ex-box",
+      "https://www.goodgames.com.au/products/pokemon-tcg-30th-celebration-tech-sticker-collection-alolan-exeggutor"
     ],
     "type": "listing_watch"
   },
