@@ -7,7 +7,7 @@
   },
   "stock::https://www.jbhifi.com.au/products/pokemon-tcg-30th-celebration-knock-out-collection-card-game": {
     "name": "JB Hi-Fi - 30th Celebration Knock Out Collection",
-    "status": "IN_STOCK",
+    "status": "OUT_OF_STOCK",
     "type": "stock_watch"
   }
 }
