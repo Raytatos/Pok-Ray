@@ -1,8 +1,12 @@
 {
   "listing::https://pokesource.com.au/collections/30th-celebration": {
     "name": "PokeSource AU - 30th Celebration collection",
-    "product_status": {},
-    "seen_urls": [],
+    "product_status": {
+      "https://pokesource.com.au/collections/daily-deals": "OUT_OF_STOCK"
+    },
+    "seen_urls": [
+      "https://pokesource.com.au/collections/daily-deals"
+    ],
     "type": "listing_watch"
   },
   "listing::https://toysrus.com.au/collections/pokemon": {
