@@ -2,6 +2,7 @@
   "listing::https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration": {
     "name": "Collectible Madness - 30th Celebration collection",
     "product_status": {
+      "https://collectiblemadness.com.au/collections/30th-celebration-card-singles": "IN_STOCK",
       "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-japanese-tcg-30th-celebration-m6a-booster-box": "IN_STOCK",
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-battle-deck-espeon-ex": "IN_STOCK",
@@ -23,6 +24,7 @@
       "https://collectiblemadness.com.au/products/pokemon-tcg-30th-celebration-ultra-premium-collection-night": "IN_STOCK"
     },
     "seen_urls": [
+      "https://collectiblemadness.com.au/collections/30th-celebration-card-singles",
       "https://collectiblemadness.com.au/collections/pokemon-tcg-30th-celebration",
       "https://collectiblemadness.com.au/pages/giveaway",
       "https://collectiblemadness.com.au/products/pokemon-japanese-tcg-30th-celebration-m6a-booster-box",
